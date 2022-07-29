@@ -11,20 +11,24 @@ import { PostsService } from './modules/posts/posts.service';
 import { SessionsController } from './modules/sessions/sessions.controller';
 import { SessionsModule } from './modules/sessions/sessions.module';
 import { SessionsService } from './modules/sessions/sessions.service';
+import { UserTestModule } from './modules/user-test/user-test.module';
+import { UserTestService } from './modules/user-test/user-test.service';
 import { UsersController } from './modules/users/users.controller';
 import { UsersModule } from './modules/users/users.module';
 import { UsersService } from './modules/users/users.service';
 import { TypeOrmUsersRepository } from './repositories/implementations/TypeOrmUsersRepository';
-
+import { UsersTestRepository } from './repositories/implementations/UsersTestRepository';
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeormConfig),
     UsersModule,
+    UserTestModule,
     PostsModule,
     LikesModule,
     SessionsModule,
   ],
   controllers: [
+    UsersController,
     UsersController,
     PostsController,
     SessionsController,
@@ -32,10 +36,12 @@ import { TypeOrmUsersRepository } from './repositories/implementations/TypeOrmUs
   ],
   providers: [
     UsersService,
+    UserTestService,
     PostsService,
     SessionsService,
     LikesService,
     { provide: 'IUserRepository', useClass: TypeOrmUsersRepository },
+    { provide: 'IUserTestRepository', useClass: UsersTestRepository },
   ],
 })
 export class AppModule {
