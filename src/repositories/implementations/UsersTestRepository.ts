@@ -11,15 +11,16 @@ export class UsersTestRepository implements IUserTestRepository {
     private readonly usersRepository: Repository<UserTest>,
   ) {}
   findAll(): Promise<UserTest[]> {
-    throw new Error('Method not implemented.');
+    return this.usersRepository.find();
   }
   findById(id: string): Promise<UserTest> {
-    throw new Error('Method not implemented.');
+    return this.usersRepository.findOneBy({ id });
   }
   save(user: UserTest): Promise<UserTest> {
-    throw new Error('Method not implemented.');
+    return this.usersRepository.save(user);
   }
   delete(user: UserTest): Promise<void> {
-    throw new Error('Method not implemented.');
+    this.usersRepository.delete(user);
+    return
   }
 }
