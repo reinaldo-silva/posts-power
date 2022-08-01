@@ -11,6 +11,7 @@ import { PostsService } from './modules/posts/posts.service';
 import { SessionsController } from './modules/sessions/sessions.controller';
 import { SessionsModule } from './modules/sessions/sessions.module';
 import { SessionsService } from './modules/sessions/sessions.service';
+import { UserTestController } from './modules/user-test/user-test.controller';
 import { UserTestModule } from './modules/user-test/user-test.module';
 import { UserTestService } from './modules/user-test/user-test.service';
 import { UsersController } from './modules/users/users.controller';
@@ -29,7 +30,7 @@ import { UsersTestRepository } from './repositories/implementations/UsersTestRep
   ],
   controllers: [
     UsersController,
-    UsersController,
+    UserTestController,
     PostsController,
     SessionsController,
     LikesController,
