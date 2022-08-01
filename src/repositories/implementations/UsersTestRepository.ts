@@ -10,16 +10,25 @@ export class UsersTestRepository implements IUserTestRepository {
     @InjectRepository(UserTest)
     private readonly usersRepository: Repository<UserTest>,
   ) {}
-  findAll(): Promise<UserTest[]> {
-    throw new Error('Method not implemented.');
+
+  async findAll(): Promise<UserTest[]> {
+    return this.usersRepository.find();
   }
+
   findById(id: string): Promise<UserTest> {
-    throw new Error('Method not implemented.');
+    return this.usersRepository.findOneBy({ id });
   }
-  save(user: UserTest): Promise<UserTest> {
-    throw new Error('Method not implemented.');
+
+  async save(user: UserTest): Promise<UserTest> {
+    const newUserTest = new UserTest();
+
+    const userTest = await this.usersRepository.save(
+      Object.assign(newUserTest, user),
+    );
+    return userTest;
   }
-  delete(user: UserTest): Promise<void> {
-    throw new Error('Method not implemented.');
+
+  async delete(user: UserTest): Promise<void> {
+    this.usersRepository.remove(user);
   }
 }
